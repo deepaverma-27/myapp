@@ -1,0 +1,44 @@
+<h3>all books</h3>
+<form action="<%= books_path %>">
+  <input type="text" placeholder="So, What are you planning to buy today?" name="search_key">
+  <button type="submit">Search</button>
+</form>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>AutherName</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Cover</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.name%></td>
+        <td><%= book.auther_name %></td>
+        <td><%= book.title %></td>
+        <td><%= book.description %></td>
+        <td><%= book.price %></td>
+        <td><%= image_tag(book.cover, class: 'book-image') %></td>
+        <td><%= link_to  "show" , book %></td>
+        <td><%= link_to "Edit", edit_book_path(book) %></td>
+      <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to "New book", new_book_path %>
+
+<style type="text/css">
+  .book-image{
+    width: 100px;
+    height: 100px;
+  }
+</style>

@@ -1,0 +1,40 @@
+<%if @book.errors.any? %>
+    <% @book.errors.full_messages.each do |msg|%>
+    <li><%= msg %></li>
+  <%end%>
+<% end %>
+<%= form_with model:@book do |form| %>
+  <div>
+    <%= form.label :Name %><br>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :title %></br>
+    <%= form.text_field :title %>
+  </div>
+  <div>
+    <%= form.label :description %></br>
+    <%= form.text_field :description %>
+  </div>
+  <div>
+    <%= form.label :auther_name %><br>
+    <%= form.text_field :auther_name %>
+  </div>
+  <div>
+    <%= form.label :price %><br>
+    <%= form.text_field :price %>
+  </div>
+  <div>
+    <%= form.label :category_id %><br>
+    <%= form.select :category_id, Category.all.collect { |p| [ p.name, p.id ] },include_blank: true %>
+  </div>
+
+ <div>
+    <%= form.label :cover %>
+    <%= form.file_field :cover %><br>
+</div>
+ </br>
+    <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

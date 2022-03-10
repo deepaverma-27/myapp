@@ -1,0 +1,27 @@
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+<p>
+  <strong>Gender:</strong>
+  <%= @user.gender %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @user.password %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @user.role %>
+</p>
+      <%= link_to "Edit", edit_user_path(@user) %>
+      <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to "New user", new_user_path %>
+  

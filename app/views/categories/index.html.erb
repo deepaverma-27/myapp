@@ -1,0 +1,30 @@
+<!-- <h5> all categories <h5> -->
+<form action="<%= categories_path %>">
+  <input type="text" placeholder="So, What are you planning to buy today?" name="search_key">
+  <button type="submit">Search</button>
+</form>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |b| %>
+      <tr>
+        <td><%= b.name %></td>
+        
+        <!-- <td><%#= link_to  "show" , category %></td> -->
+        <!-- <td><%#= link_to "Edit", edit_category_path(category) %></td> -->
+      <!-- <td><%#= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to " Create New Category", new_category_path %>
+

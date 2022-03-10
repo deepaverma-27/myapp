@@ -1,0 +1,37 @@
+<%#= image_tag(@book.cover, alt: "book cover") %>
+<%= image_tag(@book.cover, class: 'book-image') %>
+<%# @book.covers.attach(params[:covers]) %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @book.name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @book.title %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @book.description %>
+</p>
+
+<p>
+  <strong>AutherName:</strong>
+  <%= @book.auther_name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @book.price %>
+</p>
+      <%= link_to "Edit", edit_book_path(@book) %>
+      <%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to "New book", new_book_path %>
+
+  <style type="text/css">
+  .book-image{
+    width: 100px;
+    height: 100px;
+  }
+</style>

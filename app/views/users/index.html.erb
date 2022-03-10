@@ -1,0 +1,38 @@
+<form action="<%= users_path %>">
+  <input type="text" placeholder="So, What are you planning to buy today?" name="search_key">
+  <button type="submit">Search</button>
+</form>
+<h3>all users</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Gender</th>
+      <th>role</th>
+      <th>action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.gender %></td>
+        <td><%= user.role %></td>
+        <td><%= link_to "Show", user %></td>
+        <td><%= link_to "Edit", edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to " Create New User", new_user_path %>
+
+<style type ="text/css">
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
