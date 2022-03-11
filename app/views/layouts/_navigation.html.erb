@@ -1,28 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 30px;">
-        <%# if Current.user.present? && Current.user.role = "admin"%>
-          <!-- <li><%#= link_to 'show all books', books_path %></li> -->
-          <!-- <li><%#= link_to 'show all user', users_path %></li> -->
-        <%# end %>
-       
-        <% if @current_user.present? && @current_user.role == 'admin'  %>
-          <%= button_to 'Sig In', sign_in_path %></br>
-          <li><%= link_to 'show all books', books_path %></li>
-          <li><%= link_to 'show all user', users_path %></li>
-          <li><%= link_to 'show all category', categories_path %></li>
-         </li>
-      <% end %>
+        <% if @current_user.present? && @current_user.normaluser?  %>
+          <%#= button_to 'Sig In', sign_in_path %></br>
+         <%= link_to 'log out',logout_path,class:"nav-link",method: :delete%>
+         
 
-      <% if logged_in? %>
+          <!-- <li><%#= link_to 'show all user', users_path %></li> -->
+          <!-- <li><%#= link_to 'show all category', categories_path %></li> -->
+      <% elsif @current_user.present? && @current_user.admin? %>
           <li class="nav-item">
           <%= link_to 'log out',logout_path,class:"nav-link",method: :delete%></li>
           <li><%= link_to 'show all books', books_path %></li>
           <li><%= link_to 'show all user', users_path %></li>
           <li><%= link_to 'show all categries', categories_path %></li>
            </li>
-       <% else %>
+      <% else %>
           <%= button_to 'Sig In', sign_in_path %></br>
           <%= button_to 'signup', sign_up_path, method: 'get', class:"nav-link"%>
-        </li>
-      <% end %>
-</nav>  
-
+         </li>
+  <% end %>
+  

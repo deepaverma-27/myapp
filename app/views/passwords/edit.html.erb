@@ -1,5 +1,5 @@
 <h1>Edit Password</h1>
-  <%= form_with model: Current.user, url: edit_password_path do |f| %>
+  <%= form_with model: @current_user, url: edit_password_path do |f| %>
     <p>
     <%= f.label 'password:'%><br>
     <%= f.password_field :password %>

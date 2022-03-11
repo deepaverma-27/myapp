@@ -2,7 +2,7 @@ class BooksController < ApplicationController
    before_action :require_user_logged_in!, only:[:index,:show]
    before_action :set_book, only:[ "show","edit","update","destroy" ]
   
-    def index
+  def index
       if params[:search_key]
         @books = Book.search(params)
       else

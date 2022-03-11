@@ -18,8 +18,7 @@ class RegistrationsController < ApplicationController
 
     private
     def user_params
-      byebug
       # strong parameters
-      params.require(:user).permit(:name, :email, :gender, :role, :password, :password_digest)
+      params.require(:user).permit(:name, :email, :gender, :role,:password_digest,:password,:password_confirmation)
     end
   end

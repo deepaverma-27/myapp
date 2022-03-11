@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in!, only:[:show,:index]
+  before_action :require_user_logged_in!, only:[:show,:index,:update]
 
   def index
     if params[:search_key]
-      @users = User.where("name LIKE ? OR email LIKE ?", 
-      "%#{params[:search_key]}%", "%#{params[:search_key]}%")
+      @users = User.search(params)
     else
       @users = User.all
     end
@@ -25,6 +24,7 @@ class UsersController < ApplicationController
 
   def create 
     @user = User.new(user_params)
+     # @user.role = 'normaluser'
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = 'user created successfully'
@@ -51,6 +51,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name,:email,:gender,:role,:password,:password_digest)
+    params.require(:user).permit(:name,:email,:gender,:role,:password_digest,:password,:password_confirmation)
   end
 end

@@ -1,7 +1,7 @@
 <%if @user.errors.any? %>
     <% @user.errors.full_messages.each do |msg|%>
     <li><%= msg %></li>
-  <%end%>
+<%end%>
 <% end %>
 <%= form_with model:@user do |form| %>
   <div>
@@ -23,16 +23,12 @@
     <%= form.label :Password%></br>
     <%= form.text_field :password,type: 'password'%>
   </div>
-  <div>
-    <%= form.label :confirmation_password%></br>
-    <%= form.text_field :confirmation_password, type: 'password' %>
-  </div>
   
   <div>
-    <%= form.label :Role %></br>
-    <%= form.select :role,User.roles.keys %>
-  </div></br>
-
+    <%= form.label :password_confirmation%></br>
+    <%= form.text_field :password_confirmation, type: 'password' %>
+  </div>
+  
   <div class="actions">
    <%=form.submit(@user.new_record? ? "sign up" : "update account") %>
  </div>
