@@ -14,7 +14,7 @@
           <li><%= link_to 'show all categries', categories_path %></li>
            </li>
       <% else %>
-          <%= button_to 'Sig In', sign_in_path %></br>
+          <%= button_to 'Sig In', sign_in_path,method: 'get' %></br>
           <%= button_to 'signup', sign_up_path, method: 'get', class:"nav-link"%>
          </li>
   <% end %>

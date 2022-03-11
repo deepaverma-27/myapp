@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
-   def index
-    if @current_user.present? && @current_user.normaluser? 
+  def index
       redirect_to books_url
-    end
-  end
+   end
 end

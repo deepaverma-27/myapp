@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @users.each do |user| %>
+    <% @users.each.with_index do |user| %>
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
