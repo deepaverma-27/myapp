@@ -6,7 +6,7 @@ class BooksController < ApplicationController
       if params[:search_key]
         @books = Book.search(params)
       else
-        @books = Book.all
+        @books = Book.all.order(:name)
       end
    end
 
