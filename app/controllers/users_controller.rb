@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     @user =User.find(params[:id])
     session[:user_id] = nil
     @user.destroy
-    redirect_to users_path
+    redirect_to sign_in_path
   end
 
   def user_params

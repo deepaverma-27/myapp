@@ -1,23 +1,50 @@
 <h3>all books</h3>
-<form action="<%= books_path %>">
-  <input type="text" placeholder="So, What are you planning to buy today?" name="search_key">
-  <button type="submit">Search</button>
-</form>
+<div class = "container">
+  <div class="row">
+    <div class="col-md-6">
+      <form action="<%= books_path %>">
+        <input type="text" placeholder="So, What are you planning to buy today?" name="search_key">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+        <label for="cars">sort by</label>
+        <select id="cars" name="cars">
+        <option value="volvo">name</option>
+        <option value="saab">AutherName</option>
+        <option value="fiat">Description</option>
+        <option value="audi">Price</option>
+        </select>
+    </div>
+    <div class="col-md-6">
+        <label for="cars">sort order</label>
+        <select id="cars" name="cars">
+        <option value="volvo">ascending order</option>
+        <option value="saab">descending order</option>
+        </select>
+    </div>
+    <div class="col-md-6">
+   <%= button_to 'submit', books_path, method: :get %>
+  </div>
+    </div>
+  </div>  
+</div>
 <br>
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>AutherName</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
+      <th><%= link_to "name", books_path(order: 'name'), class: "name", :data => { :sort_by => 'name', :sort_order => 'asc' } %></th>
+      <th><%= link_to "AutherName", books_path(order: 'AutherName'), class: "AutherName"%></th>
+      <th><%= link_to "Title", books_path(order: 'title'),class: "title" %></th>
+      <th><%= link_to "Description", books_path(order: 'Description') ,class: "Description"%></th>
+     <th> <%= link_to "Price", books_path(order: 'Price') ,class: "Price"%></th>
+
+      <%#= link_to "name", 'javascript:;', class: 'my-class', data: { 'array' => %w(name) } %>
       <th>Cover</th>
     </tr>
   </thead>
-
   <tbody>
-    <% @books.each_with_index do |book,index| %>
+    <% @books.each do |book| %>
       <tr>
         <td><%= book.name%></td>
         <td><%= book.auther_name %></td>
@@ -25,20 +52,21 @@
         <td><%= book.description %></td>
         <td><%= book.price %></td>
         <td><%= image_tag(book.cover, class: 'book-image') %></td>
-        <td><%= link_to  "show" , book %></td>
-        <td><%= link_to "Edit", edit_book_path(book) %></td>
-      <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'view', book, method: :get %></td>
+        <td><%= button_to "Edit", edit_book_path(book),method: :get %></td>
+      <td><%= button_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-
-<%= link_to "New book", new_book_path %>
 
 <style type="text/css">
   .book-image{
     width: 100px;
     height: 100px;
   }
-</style>
+.row{
+  display: flex;
+  justify-content: space-between;
+}
+  }

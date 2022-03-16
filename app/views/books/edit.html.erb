@@ -1,6 +1,6 @@
 <h1>Editing book</h1>
 
 <%= render 'form'%>
-<li><%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-<li><%= link_to 'Show', @book %> </li>
-<li><%= link_to 'Back to new create book', books_path %></li>
+<li><%= button_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+<li><%= button_to 'Show', @book,method: :get %> </li>
+<!-- <li><%#= button_to 'Back to new create book', books_path ,method: :get%></li> -->
