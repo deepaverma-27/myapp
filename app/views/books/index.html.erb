@@ -7,14 +7,16 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>AutherName</th>
+      <%=link_to "+ @name", "books/index", :name => name%>
+      <!-- <th><%#= link_to  "show" , books_path %>Name</th> -->
+      /<th>AutherName</th>
       <th>Title</th>
       <th>Description</th>
       <th>Price</th>
       <th>Cover</th>
     </tr>
   </thead>
+  
 
   <tbody>
     <% @books.each_with_index do |book,index| %>

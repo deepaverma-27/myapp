@@ -5,8 +5,11 @@ class BooksController < ApplicationController
   def index
       if params[:search_key]
         @books = Book.search(params)
+      if params[:name]
+       @book.name = params[:name]
+     end
       else
-        @books = Book.all.order(:name)
+        @books = Book.all.order(:name,:auther_name,title: :asc)
       end
    end
 
