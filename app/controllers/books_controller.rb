@@ -1,17 +1,31 @@
 class BooksController < ApplicationController
-   before_action :require_user_logged_in!, only:[:index,:show]
+   before_action :require_user_logged_in!
    before_action :set_book, only:[ "show","edit","update","destroy" ]
   
   def index
+    @books =Book.order(params[:sort])
       if params[:search_key]
         @books = Book.search(params)
       if params[:name]
        @book.name = params[:name]
      end
       else
-        @books = Book.all.order(:name,:auther_name,title: :asc)
-      end
+        @books = Book.all.order(:name,:auther_name,:title,:description)
+     end
    end
+  # def index
+  #   @books = Book.order(:name)
+  #   if params[:order] == 'name'
+  #       @books = Book.all.order('name')
+  #   elsif params[:order] == 'auther_name'
+  #       @books = Book.all.order('auther_name')
+  #   elsif params[:order] == 'title'
+  #       @books = Book.all.order('title')
+  #   else
+  #       @books = Book.all
+  #   end 
+
+  #  end
 
    def new
     @book = Book.new
