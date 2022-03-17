@@ -6,6 +6,9 @@ class BooksController < ApplicationController
     @books =Book.order(params[:sort])
       if params[:search_key]
         @books = Book.search(params)
+      if params[:name]
+       @book.name = params[:name]
+     end
       else
         @books = Book.all.order(:name,:auther_name,:title,:description)
      end

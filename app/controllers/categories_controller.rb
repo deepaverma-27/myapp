@@ -1,6 +1,10 @@
 class CategoriesController < ApplicationController
   def index
-    @categories =Category.all
+    if params[:search_key]
+      @categories =Category.search(params)
+    else
+      @categories =Category.all
+     end
   end
   
   def new
