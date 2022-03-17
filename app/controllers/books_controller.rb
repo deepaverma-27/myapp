@@ -57,9 +57,9 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
-   def set_book
-     @book = Book.find(params[:id])
-   end
+  def set_book
+   @book = Book.find(params[:id])
+  end
 
   private
     def book_params

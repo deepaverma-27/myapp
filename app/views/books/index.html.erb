@@ -7,29 +7,17 @@
         <button type="submit">Search</button>
       </form>
     </div>
-    <div class="col-md-6">
-        <label for="cars">sort by</label>
-        <select id="cars" name="cars">
-        <option value="volvo">name</option>
-        <option value="saab">AutherName</option>
-        <option value="fiat">Description</option>
-        <option value="audi">Price</option>
-        </select>
-    </div>
-    <div class="col-md-6">
-        <label for="cars">sort order</label>
-        <select id="cars" name="cars">
-        <option value="volvo">ascending order</option>
-        <option value="saab">descending order</option>
-        </select>
-    </div>
-    <div class="col-md-6">
-   <%= button_to 'submit', books_path, method: :get %>
-  </div>
+    <%= form_tag books_path, remote: true do %>
+      <%= select_tag :sort_by, options_for_select(["name","title","description", "auther_name","price"])%>
+      <%= select_tag :sort_order, options_for_select(['asc', 'desc'])%>
+      <%= button_tag(:type => 'button') do %>
+        <% link_to 'button'%>
+      <% end %>
+    <% end %>
     </div>
   </div>  
 </div>
-<br>
+
 <table>
   <thead>
     <tr>
@@ -59,14 +47,29 @@
     <% end %>
   </tbody>
 </table>
-
+<script type="text/javascript">
+  $('#sort_book').on('click', function(){
+    debugger
+    sort_by = $('#sort_by').val();
+    sort_order = $('#sort_order').val();
+    Rails.ajax({
+      url: "/books",
+      type: "get",
+      data: {'sort_by': sort_by, 'sort_order': sort_order},
+      success: function(data) {
+        debugger
+      },
+      error: function(data) {}
+    }) 
+  });
+</script>
 <style type="text/css">
   .book-image{
     width: 100px;
     height: 100px;
   }
-.row{
-  display: flex;
-  justify-content: space-between;
-}
+  .row{
+    display: flex;
+    justify-content: space-between;
   }
+</style>

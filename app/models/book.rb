@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
   has_one_attached :cover
-
+  
   # Association
   belongs_to :category
 
