@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in!, only:[:show,:index,:update]
-
+  before_action :require_user_logged_in!
   def index
     if params[:search_key]
       @users = User.search(params)

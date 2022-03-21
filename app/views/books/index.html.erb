@@ -7,11 +7,11 @@
         <button type="submit">Search</button>
       </form>
     </div>
-    <%= form_tag books_path, remote: true do %>
+    <%= form_tag books_path,remote: true do %>
       <%= select_tag :sort_by, options_for_select(["name","title","description", "auther_name","price"])%>
       <%= select_tag :sort_order, options_for_select(['asc', 'desc'])%>
       <%= button_tag(:type => 'button') do %>
-        <% link_to 'button'%>
+        <% link_to 'button',@book,id: "sort_book",remote: true%>
       <% end %>
     <% end %>
     </div>
@@ -22,10 +22,10 @@
   <thead>
     <tr>
       <th><%= link_to "name", books_path(order: 'name'), class: "name", :data => { :sort_by => 'name', :sort_order => 'asc' } %></th>
-      <th><%= link_to "AutherName", books_path(order: 'AutherName'), class: "AutherName"%></th>
-      <th><%= link_to "Title", books_path(order: 'title'),class: "title" %></th>
-      <th><%= link_to "Description", books_path(order: 'Description') ,class: "Description"%></th>
-     <th> <%= link_to "Price", books_path(order: 'Price') ,class: "Price"%></th>
+      <th><%= link_to "AutherName", books_path(order: 'AutherName'), class: "AutherName",:data => { :sort_by => 'name', :sort_order => 'asc' }%></th>
+      <th><%= link_to "Title", books_path(order: 'title'),class: "title",:data => { :sort_by => 'name', :sort_order => 'asc' } %></th>
+      <th><%= link_to "Description", books_path(order: 'Description') ,class: "Description",:data => { :sort_by => 'name', :sort_order => 'asc' }%></th>
+     <th> <%= link_to "Price", books_path(order: 'Price') ,class: "Price",:data => { :sort_by => 'name', :sort_order => 'asc' }%></th>
 
       <%#= link_to "name", 'javascript:;', class: 'my-class', data: { 'array' => %w(name) } %>
       <th>Cover</th>
@@ -49,20 +49,19 @@
 </table>
 <script type="text/javascript">
   $('#sort_book').on('click', function(){
-    debugger
     sort_by = $('#sort_by').val();
     sort_order = $('#sort_order').val();
-    Rails.ajax({
+    $.ajax({
       url: "/books",
       type: "get",
       data: {'sort_by': sort_by, 'sort_order': sort_order},
       success: function(data) {
-        debugger
       },
       error: function(data) {}
     }) 
   });
 </script>
+
 <style type="text/css">
   .book-image{
     width: 100px;

@@ -3,15 +3,14 @@ class BooksController < ApplicationController
    before_action :set_book, only:[ "show","edit","update","destroy" ]
   
   def index
-    @books =Book.order(params[:sort])
-      if params[:search_key]
-        @books = Book.search(params)
-      if params[:name]
-       @book.name = params[:name]
-     end
-      else
-        @books = Book.all.order(:name,:auther_name,:title,:description)
-     end
+    # binding.pry
+    if params[:search_key].present?
+      @books = Book.search(params)
+    else
+      @books = Book.all
+    end
+    @books.order(params[:sort_by],params[:sort_order])
+
    end
   # def index
   #   @books = Book.order(:name)

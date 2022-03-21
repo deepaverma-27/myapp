@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :require_user_logged_in!
   def index
     if params[:search_key]
       @categories =Category.search(params)
